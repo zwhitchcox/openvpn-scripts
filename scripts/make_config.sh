@@ -7,6 +7,12 @@ KEY_DIR=~/client-configs/keys
 OUTPUT_DIR=~/client-configs/files
 BASE_CONFIG=~/client-configs/base.conf
 
+if [ -z "${1}" ]; then
+    echo must have name > /dev/stderr
+fi
+
+bash ./setup/generate-client-2.sh "${1}"
+
 cat ${BASE_CONFIG} \
     <(echo -e '<ca>') \
     ${KEY_DIR}/ca.crt \
